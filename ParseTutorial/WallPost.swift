@@ -44,7 +44,7 @@ final class WallPost: PFObject {
   
   // MARK: - Overridden
   override class func query() -> PFQuery<PFObject>? {
-    let query = PFQuery(className: WallPost.parseClassName())
+    let query = PFQuery(className: R.wallPost)
     query.includeKey("user")
     query.order(byDescending: "createdAt")
     return query
@@ -53,8 +53,8 @@ final class WallPost: PFObject {
 
 // MARK: - PFSubclassing
 extension WallPost: PFSubclassing {
-  
+  // required protocol method
   static func parseClassName() -> String {
-    return "WallPost"
+    return R.wallPost
   }
 }

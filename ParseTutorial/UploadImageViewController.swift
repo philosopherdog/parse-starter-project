@@ -44,7 +44,7 @@ extension UploadImageViewController {
     present(imagePicker, animated: true)
   }
   
-  @IBAction func sendPressed(_ sender: AnyObject) {
+  @IBAction func sendPressed(_ sender: UIBarButtonItem) {
     commentTextField.resignFirstResponder()
     
     // Disable the send button until we are ready
@@ -58,46 +58,49 @@ extension UploadImageViewController {
         return
     }
     
-    file.saveInBackground({ [unowned self] succeeded, error in
-      guard succeeded == true else {
+    guard let commentText = commentTextField.text else {
+      return
+    }
+    
+    DataManager.upload(file, and: commentText) {[unowned self] (success: Bool, error: Error?) in
+      if let error = error {
         self.showErrorView(error)
         return
       }
-      self.saveWallPost(file)
-      }, progressBlock: { percent in
-        print("Uploaded: \(percent)%")
-    })
+      guard success == true else {
+        let successError = R.error(with: "Something went wrong, try again.")
+        self.showErrorView(successError)
+        return
+      }
+      self.navigationController?.popViewController(animated: true)
+    }
   }
 }
 
 // MARK: - Private
-private extension UploadImageViewController {
-  
-  func saveWallPost(_ file: PFFile) {
-    guard let currentUser = PFUser.current() else {
-      return
-    }
-    
-    let wallPost = WallPost(image: file, user: currentUser, comment: commentTextField.text)
-    wallPost.saveInBackground { [unowned self] succeeded, error in
-      if succeeded {
-        _ = self.navigationController?.popViewController(animated: true)
-      } else if let error = error {
-        self.showErrorView(error)
-      }
-    }
-  }
-}
-
-// MARK: - UINavigationControllerDelegate
-extension UploadImageViewController: UINavigationControllerDelegate {
-}
+//private extension UploadImageViewController {
+//  
+//  func saveWallPost(_ file: PFFile) {
+//    guard let currentUser = PFUser.current() else {
+//      return
+//    }
+//    
+//    let wallPost = WallPost(image: file, user: currentUser, comment: commentTextField.text)
+//    wallPost.saveInBackground { [unowned self] succeeded, error in
+//      if succeeded {
+//        _ = self.navigationController?.popViewController(animated: true)
+//      } else if let error = error {
+//        self.showErrorView(error)
+//      }
+//    }
+//  }
+//}
 
 // MARK: - UIImagePickerControllerDelegate
-extension UploadImageViewController: UIImagePickerControllerDelegate {
+
+extension UploadImageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [AnyHashable: Any]!) {
-    // Place the image in the imageview
     imageToUpload.image = image
     picker.dismiss(animated: true, completion: nil)
   }

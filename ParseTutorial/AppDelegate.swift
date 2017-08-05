@@ -37,6 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       $0.server = "http://breakout-aug.herokuapp.com/parse"
     }
     Parse.initialize(with: configuration)
+    
+    /*
+    Not using remote notifications
+    */
+    
     /*
     //1
     let userNotificationCenter = UNUserNotificationCenter.current()

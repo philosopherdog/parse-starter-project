@@ -36,7 +36,6 @@ extension UIViewController {
     
     alertController.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""),
                                             style: .default))
-    
-    present(alertController, animated: true)
+    present(alertController, animated: true, completion: nil)
   }
 }

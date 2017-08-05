@@ -24,30 +24,33 @@ import UIKit
 
 final class RegisterViewController: UIViewController {
   
-  // MARK: - Segue Identifiers
-  fileprivate enum Segue {
-    static let tableViewWallSegue = "SignupSuccesfulTable"
-  }
-  
   // MARK: - IBOutlets
   @IBOutlet weak var userTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
 }
 
 // MARK: - IBActions
+
 private extension RegisterViewController {
-  
   @IBAction func signUpPressed(_ sender: AnyObject) {
+    
+    guard let userName = userTextField.text, let password = passwordTextField.text else {
+      let error = R.error(with: "Please enter a valid user name and password")
+      showErrorView(error)
+      return
+    }
+    
     let user = PFUser()
-    user.username = userTextField.text
-    user.password = passwordTextField.text
-    user.signUpInBackground { [unowned self] succeeded, error in
-      guard succeeded == true else {
+    user.username = userName
+    user.password = password
+    user.signUpInBackground { [unowned self] success, error in
+      guard success == true else {
         self.showErrorView(error)
         return
       }
-      // Successful registration, display the wall
-      self.performSegue(withIdentifier: Segue.tableViewWallSegue, sender: nil)
+      self.performSegue(withIdentifier: R.wallPicturesTableViewController, sender: nil)
     }
   }
+  
+  
 }

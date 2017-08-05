@@ -26,7 +26,11 @@ final class WallPostTableViewCell: PFTableViewCell {
   
   // MARK: - IBOutlets
 
-  @IBOutlet weak var postImage: UIImageView!
+  @IBOutlet weak var postImage: UIImageView! {
+    didSet {
+      
+    }
+  }
   
   @IBOutlet weak var createdByLabel: UILabel!
   @IBOutlet weak var commentLabel: UILabel!

@@ -32,6 +32,8 @@
 		2902FA4D1C7FB69D00883546 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2902FA4A1C7FB69D00883546 /* Parse.framework */; };
 		2902FA4E1C7FB69D00883546 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2902FA4B1C7FB69D00883546 /* ParseUI.framework */; };
 		AA71DBAB1F35130700A5CB0A /* WallPicturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA71DBAA1F35130700A5CB0A /* WallPicturesTableViewController.swift */; };
+		AAED2F0C1F36008B00154AA7 /* R.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED2F0B1F36008B00154AA7 /* R.swift */; };
+		AAED2F0E1F36019900154AA7 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED2F0D1F36019900154AA7 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		2902FA4B1C7FB69D00883546 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		2902FA4F1C7FB8FC00883546 /* ParseTutorial-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParseTutorial-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		AA71DBAA1F35130700A5CB0A /* WallPicturesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallPicturesTableViewController.swift; sourceTree = "<group>"; };
+		AAED2F0B1F36008B00154AA7 /* R.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.swift; sourceTree = "<group>"; };
+		AAED2F0D1F36019900154AA7 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				0E8BD2F51ABCC12F000321DA /* WallPost.swift */,
+				AAED2F0D1F36019900154AA7 /* DataManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -150,9 +155,10 @@
 			children = (
 				0EDE6DA81DF49F97000070D7 /* ParseTutorial.entitlements */,
 				0E5977251AA9F46F00CB22B6 /* AppDelegate.swift */,
+				0E5977451AA9F48300CB22B6 /* Controllers */,
 				0E234A3E1AACA5E900FDA76B /* Model */,
 				0E234A3D1AACA5DA00FDA76B /* Views */,
-				0E5977451AA9F48300CB22B6 /* ViewControllers */,
+				AAED2F101F3647D800154AA7 /* Helps */,
 				0E5977231AA9F46F00CB22B6 /* Supporting Files */,
 			);
 			path = ParseTutorial;
@@ -161,6 +167,7 @@
 		0E5977231AA9F46F00CB22B6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AAED2F0F1F360DA600154AA7 /* Old */,
 				2902FA4F1C7FB8FC00883546 /* ParseTutorial-Bridging-Header.h */,
 				0E5977291AA9F46F00CB22B6 /* Main.storyboard */,
 				0E59772E1AA9F46F00CB22B6 /* LaunchScreen.xib */,
@@ -170,33 +177,32 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		0E5977451AA9F48300CB22B6 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				0E234A3F1AACA6B100FDA76B /* UIViewControllerExtension.swift */,
-				0E5977461AA9F49B00CB22B6 /* Login/Register */,
-				0E5977471AA9F4A400CB22B6 /* Wall */,
-			);
-			name = ViewControllers;
-			sourceTree = "<group>";
-		};
-		0E5977461AA9F49B00CB22B6 /* Login/Register */ = {
+		0E5977451AA9F48300CB22B6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				0E5977481AA9F4CF00CB22B6 /* LoginViewController.swift */,
 				0E59774A1AA9F4DC00CB22B6 /* RegisterViewController.swift */,
+				AA71DBAA1F35130700A5CB0A /* WallPicturesTableViewController.swift */,
+				0E59774E1AA9F50F00CB22B6 /* UploadImageViewController.swift */,
 			);
-			name = Login/Register;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
-		0E5977471AA9F4A400CB22B6 /* Wall */ = {
+		AAED2F0F1F360DA600154AA7 /* Old */ = {
 			isa = PBXGroup;
 			children = (
 				0E59774C1AA9F4F500CB22B6 /* WallPicturesViewController.swift */,
-				0E59774E1AA9F50F00CB22B6 /* UploadImageViewController.swift */,
-				AA71DBAA1F35130700A5CB0A /* WallPicturesTableViewController.swift */,
 			);
-			name = Wall;
+			name = Old;
+			sourceTree = "<group>";
+		};
+		AAED2F101F3647D800154AA7 /* Helps */ = {
+			isa = PBXGroup;
+			children = (
+				0E234A3F1AACA6B100FDA76B /* UIViewControllerExtension.swift */,
+				AAED2F0B1F36008B00154AA7 /* R.swift */,
+			);
+			name = Helps;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +294,8 @@
 				0E59774F1AA9F50F00CB22B6 /* UploadImageViewController.swift in Sources */,
 				0E59774D1AA9F4F500CB22B6 /* WallPicturesViewController.swift in Sources */,
 				0E8BD2F81ABCC143000321DA /* WallPostTableViewCell.swift in Sources */,
+				AAED2F0C1F36008B00154AA7 /* R.swift in Sources */,
+				AAED2F0E1F36019900154AA7 /* DataManager.swift in Sources */,
 				0E5977261AA9F46F00CB22B6 /* AppDelegate.swift in Sources */,
 				0E8BD2F61ABCC12F000321DA /* WallPost.swift in Sources */,
 			);

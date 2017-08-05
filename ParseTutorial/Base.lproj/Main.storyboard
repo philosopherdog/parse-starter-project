@@ -84,8 +84,7 @@
                     <connections>
                         <outlet property="passwordTextField" destination="oBO-d7-rsA" id="KhG-ZG-dCV"/>
                         <outlet property="userTextField" destination="oSt-kB-QHR" id="YtB-m0-tW6"/>
-                        <segue destination="zRy-E3-L7Q" kind="show" identifier="LoginSuccesful" id="HV9-vb-NjQ"/>
-                        <segue destination="AdG-jk-mo1" kind="show" identifier="LoginSuccesfulTable" id="ARl-8E-2cq"/>
+                        <segue destination="AdG-jk-mo1" kind="show" identifier="WallPicturesTableViewController" id="ARl-8E-2cq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -108,7 +107,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="szL-LQ-7I7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="333" y="1022"/>
+            <point key="canvasLocation" x="162" y="1021"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="ims-fP-cN0">
@@ -162,13 +161,12 @@
                     <connections>
                         <outlet property="passwordTextField" destination="ECo-5J-1wm" id="WZP-Kj-hW8"/>
                         <outlet property="userTextField" destination="HoD-1t-k2x" id="PeW-qc-Rxj"/>
-                        <segue destination="zRy-E3-L7Q" kind="show" identifier="SignupSuccesful" id="oy7-iH-onA"/>
-                        <segue destination="AdG-jk-mo1" kind="show" identifier="SignupSuccesfulTable" id="Spn-LY-47o"/>
+                        <segue destination="AdG-jk-mo1" kind="show" identifier="WallPicturesTableViewController" id="Spn-LY-47o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b3U-CN-RWw" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="850" y="1776"/>
+            <point key="canvasLocation" x="1006" y="1624"/>
         </scene>
         <!--Wall-->
         <scene sceneID="gbl-1t-mRq">
@@ -253,54 +251,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Du-b7-UgE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1694" y="1629"/>
-        </scene>
-        <!--Wall-->
-        <scene sceneID="K6X-e5-nGN">
-            <objects>
-                <viewController storyboardIdentifier="WallPicturesViewController" id="zRy-E3-L7Q" customClass="WallPicturesViewController" customModule="ParseTutorial" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zVc-qI-W4V"/>
-                        <viewControllerLayoutGuide type="bottom" id="JQv-Fc-qKx"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Btg-1v-PI8">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxC-a3-IsW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                                <color key="backgroundColor" red="0.1964285714" green="0.1964285714" blue="0.1964285714" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="bxC-a3-IsW" firstAttribute="top" secondItem="zVc-qI-W4V" secondAttribute="bottom" id="9oS-n3-2yk"/>
-                            <constraint firstItem="JQv-Fc-qKx" firstAttribute="top" secondItem="bxC-a3-IsW" secondAttribute="bottom" id="J94-WU-3yn"/>
-                            <constraint firstItem="bxC-a3-IsW" firstAttribute="leading" secondItem="Btg-1v-PI8" secondAttribute="leading" id="iZg-Zb-Hcs"/>
-                            <constraint firstAttribute="trailing" secondItem="bxC-a3-IsW" secondAttribute="trailing" id="nmu-O9-DfF"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Wall" id="hlG-3G-c8D">
-                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="LrW-38-YeD">
-                            <connections>
-                                <action selector="logOutPressed:" destination="zRy-E3-L7Q" id="5fp-pn-BLv"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Upload" id="xm9-Qa-Fh4">
-                            <connections>
-                                <segue destination="DaU-06-QZJ" kind="show" id="pfy-sL-CBH"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="wallScroll" destination="bxC-a3-IsW" id="Ka1-i8-Ggs"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xcz-4p-nzF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1809" y="904"/>
+            <point key="canvasLocation" x="1777" y="1021"/>
         </scene>
         <!--Upload-->
         <scene sceneID="wnN-iM-GEr">
@@ -372,8 +323,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="HV9-vb-NjQ"/>
         <segue reference="ARl-8E-2cq"/>
-        <segue reference="pfy-sL-CBH"/>
     </inferredMetricsTieBreakers>
 </document>

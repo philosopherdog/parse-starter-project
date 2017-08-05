@@ -9,63 +9,70 @@
 import UIKit
 
 class WallPicturesTableViewController: UITableViewController {
-  
   var wallPosts: [WallPost] = [] {
     didSet {
       tableView.reloadData()
     }
   }
-  
+}
+
+// MARK: - LifeCycle
+
+extension WallPicturesTableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
-    // fetch the WallPost Object
-    fetchWallPostObjects()
+    handleFetch()
   }
   
-  func fetchWallPostObjects() {
-    guard let query = WallPost.query() else {
-      return
-    }
-    
-    query.findObjectsInBackground { [unowned self] (objects, error: Error?) in
-      guard let objects = objects as? [WallPost] else {
+  func handleFetch() {
+    DataManager.fetchAllPosts {[unowned self] (wallPosts, error: Error?) in
+      if let error = error {
         self.showErrorView(error)
         return
       }
-      self.wallPosts = objects
+      guard let wallPosts = wallPosts else {
+        let wallPostsError = R.error(with: "There was a problem, try again")
+        self.showErrorView(wallPostsError)
+        return
+      }
+      self.wallPosts = wallPosts
     }
   }
-  
-  
-  // MARK: - Table view data source
+}
+
+
+// MARK: - UITableViewDataSource
+
+extension WallPicturesTableViewController {
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return wallPosts.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-   let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! WallPostTableViewCell
-   let wallPost = wallPosts[indexPath.row]
-    wallPost.image.getDataInBackground { data, error in
-      guard let data = data,
-        let image = UIImage(data: data) else {
-          return
+    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! WallPostTableViewCell
+    let wallPost = wallPosts[indexPath.row]
+    
+    DataManager.fetch(wallPost.image) { (image: UIImage?, error: Error?) in
+      if let error = error {
+        print(#line, error)
+        return
       }
-      cell.postImage.image = image
-   }
-
+      guard let theImage = image else {
+        return
+      }
+      
+      cell.imageView?.image = theImage
+    }
     return cell
   }
-  
+}
+
+// MARK: - IBActions
+
+extension WallPicturesTableViewController {
   @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
     PFUser.logOut()
     navigationController?.popToRootViewController(animated: true)
   }
-  
-  
-  
-  
-  
-  
-  
 }
