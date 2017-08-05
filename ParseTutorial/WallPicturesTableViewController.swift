@@ -19,8 +19,8 @@ class WallPicturesTableViewController: UITableViewController {
 // MARK: - LifeCycle
 
 extension WallPicturesTableViewController {
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     handleFetch()
   }
   
@@ -52,18 +52,7 @@ extension WallPicturesTableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! WallPostTableViewCell
     let wallPost = wallPosts[indexPath.row]
-    
-    DataManager.fetch(wallPost.image) { (image: UIImage?, error: Error?) in
-      if let error = error {
-        print(#line, error)
-        return
-      }
-      guard let theImage = image else {
-        return
-      }
-      
-      cell.imageView?.image = theImage
-    }
+    cell.wallPost = wallPost
     return cell
   }
 }

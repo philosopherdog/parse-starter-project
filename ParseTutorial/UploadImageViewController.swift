@@ -65,36 +65,15 @@ extension UploadImageViewController {
     DataManager.upload(file, and: commentText) {[unowned self] (success: Bool, error: Error?) in
       if let error = error {
         self.showErrorView(error)
-        return
       }
-      guard success == true else {
+      if success == false {
         let successError = R.error(with: "Something went wrong, try again.")
         self.showErrorView(successError)
-        return
       }
       self.navigationController?.popViewController(animated: true)
     }
   }
 }
-
-// MARK: - Private
-//private extension UploadImageViewController {
-//  
-//  func saveWallPost(_ file: PFFile) {
-//    guard let currentUser = PFUser.current() else {
-//      return
-//    }
-//    
-//    let wallPost = WallPost(image: file, user: currentUser, comment: commentTextField.text)
-//    wallPost.saveInBackground { [unowned self] succeeded, error in
-//      if succeeded {
-//        _ = self.navigationController?.popViewController(animated: true)
-//      } else if let error = error {
-//        self.showErrorView(error)
-//      }
-//    }
-//  }
-//}
 
 // MARK: - UIImagePickerControllerDelegate
 

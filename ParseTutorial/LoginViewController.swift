@@ -17,12 +17,7 @@ extension LoginViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     checkLoginState()
-
   }
-//  override func viewDidLoad() {
-//    super.viewDidLoad()
-//    checkLoginState()
-//  }
   
   private func checkLoginState() {
     DataManager.checkUserLoginState { (success: Bool) in
