@@ -21,8 +21,8 @@ extension LoginViewController {
   
   private func checkLoginState() {
     DataManager.checkUserLoginState { (success: Bool) in
+      print(#line, success ? "": "not ", "auto logged in")
       if success {
-        print(#line, success ? "": "not ", "auto logged in")
         self.segue()
       }
     }

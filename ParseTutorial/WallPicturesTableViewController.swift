@@ -25,7 +25,7 @@ extension WallPicturesTableViewController {
   }
   
   func handleFetch() {
-    DataManager.fetchAllPosts {[unowned self] (wallPosts, error: Error?) in
+    DataManager.fetchAllPosts {[unowned self] (wallPosts: [WallPost]?, error: Error?) in
       if let error = error {
         self.showErrorView(error)
         return

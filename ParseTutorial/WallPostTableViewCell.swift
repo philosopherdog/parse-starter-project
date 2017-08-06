@@ -25,9 +25,7 @@ import UIKit
 final class WallPostTableViewCell: PFTableViewCell {
   
   // MARK: - IBOutlets
- 
-//  @IBOutlet weak var postImage: PFImageView!
-  var wallPost: WallPost! {
+   var wallPost: WallPost! {
     didSet {
       postImage.file = wallPost.image
       postImage.loadInBackground()

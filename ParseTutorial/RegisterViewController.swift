@@ -32,7 +32,7 @@ final class RegisterViewController: UIViewController {
 // MARK: - IBActions
 
 private extension RegisterViewController {
-  @IBAction func signUpPressed(_ sender: AnyObject) {
+  @IBAction func signUpPressed(_ sender: UIBarButtonItem) {
     
     guard let userName = userTextField.text, let password = passwordTextField.text else {
       let error = R.error(with: "Please enter a valid user name and password")
@@ -40,10 +40,7 @@ private extension RegisterViewController {
       return
     }
     
-    let user = PFUser()
-    user.username = userName
-    user.password = password
-    user.signUpInBackground { [unowned self] success, error in
+    DataManager.signup(with: userName, and: password) { (success: Bool, error: Error?) in
       guard success == true else {
         self.showErrorView(error)
         return
@@ -51,6 +48,4 @@ private extension RegisterViewController {
       self.performSegue(withIdentifier: R.wallPicturesTableViewController, sender: nil)
     }
   }
-  
-  
 }

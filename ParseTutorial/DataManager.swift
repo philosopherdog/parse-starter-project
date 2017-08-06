@@ -37,9 +37,9 @@ class DataManager {
       completion(objects, nil)
     }
   }
-
-  static func upload(_ file: PFFile, and comment: String, completion:@escaping (Bool, Error?) -> Void) {
   
+  static func upload(_ file: PFFile, and comment: String, completion:@escaping (Bool, Error?) -> Void) {
+    
     DataManager.checkUserLoginState(completion: { (loggedIn: Bool) in
       if !loggedIn {
         return completion(false, R.error(with: "No current user"))
@@ -64,5 +64,14 @@ class DataManager {
     }, progressBlock: { percent in
       print("Uploaded: \(percent)%")
     })
+  }
+  
+  static func signup(with userName: String, and password: String, completion: @escaping (Bool, Error?)-> Void) {
+    let user = PFUser()
+    user.username = userName
+    user.password = password
+    user.signUpInBackground { success, error in
+      completion(success, error)
+    }
   }
 }
